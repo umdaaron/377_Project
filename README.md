@@ -82,8 +82,3 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 
 ## Contributors
 - Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasuim, and Kedrala Mohammed
-
-## License
-MIT License
-
-This project fulfills all requirements for the assignment while providing practical value for recent graduates seeking federal employment opportunities.
