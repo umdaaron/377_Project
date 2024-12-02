@@ -81,4 +81,4 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 - Full API documentation available in `/docs`
 
 ## Contributors
-- Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasuim, and Kedrala Mohammed
+- Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasim, and Kedrala Mohammed
