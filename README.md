@@ -62,27 +62,18 @@ GradJobs is a web application designed to help recent graduates find federal job
 ## Technologies Used
 - Frontend: HTML5, CSS3, JavaScript
 - Libraries: Chart.js, jQuery, Slick Carousel
-- Backend: Node.js, Express
 - Database: Supabase
 - API: USAJOBS API
 
 ## Setup Instructions
 1. Clone the repository
-2. Install dependencies:
-```bash
-npm install
+2. Set up environment variables in your JavaScript:
+```javascript
+const SUPABASE_URL = 'your_supabase_url';
+const SUPABASE_KEY = 'your_supabase_key';
+const USAJOBS_API_KEY = 'your_usajobs_key';
 ```
-3. Set up environment variables:
-```env
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
-USAJOBS_API_KEY=your_usajobs_key
-```
-4. Start the server:
-```bash
-node server.js
-```
-5. Open `index.html` in your browser
+3. Open `index.html` in your browser
 
 ## API Documentation
 - `GET /api/job-stats`: Returns job statistics
@@ -90,8 +81,7 @@ node server.js
 - Full API documentation available in `/docs`
 
 ## Contributors
-- [Your Name]
-- [Course Information]
+- Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasuim, and Kedrala Mohammed
 
 ## License
 MIT License
