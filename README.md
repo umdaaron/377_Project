@@ -78,7 +78,6 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 ## API Documentation
 - `GET /api/job-stats`: Returns job statistics
 - `POST /api/applications`: Saves job applications
-- Full API documentation available in `/docs`
 
 ## Contributors
 - Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasim, and Kedrala Mohammed
