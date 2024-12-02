@@ -55,21 +55,17 @@
 ### 2. API Endpoints
 - **GET /api/job-stats**:
   ```javascript
-  app.get('/api/job-stats', async (req, res) => {
-    const { data } = await supabase
-      .from('saved_jobs')
-      .select('*');
-    res.json(data);
-  });
+  // Using direct Supabase client calls from frontend
+  const { data, error } = await supabase
+    .from('saved_jobs')
+    .select('*');
   ```
 - **POST /api/applications**:
   ```javascript
-  app.post('/api/applications', async (req, res) => {
-    const { data } = await supabase
-      .from('job_applications')
-      .insert([req.body]);
-    res.json(data);
-  });
+  // Using direct Supabase client calls from frontend
+  const { data, error } = await supabase
+    .from('job_applications')
+    .insert([applicationData]);
   ```
 
 ### 3. Contemporary CSS
