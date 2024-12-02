@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search - GradJobs</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Then Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Job Search</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Job Search</h1>
+        </header>
+        
+        <main>
+            <!-- Add this right after the header -->
+             <div class="stats-container">
+                <h2>Job Search Statistics</h2>
+                <canvas id="jobStatsChart"></canvas>
+            </div>
+
+            <!-- Advanced Search Section -->
+            <div class="advanced-search">
+                <div class="search-row">
+                    <input type="text" id="keyword-search" placeholder="Job title, keywords, or agency">
+                    <input type="text" id="location-search" placeholder="City, state, or ZIP">
+                </div>
+                
+                <div class="filter-row">
+                    <select id="job-category">
+                        <option value="">All Categories</option>
+                        <option value="technology">Technology</option>
+                        <option value="administration">Administration</option>
+                        <option value="science">Science</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="healthcare">Healthcare</option>
+                    </select>
+
+                    <select id="experience-level">
+                        <option value="">Experience Level</option>
+                        <option value="entry">Entry Level</option>
+                        <option value="mid">Mid Level</option>
+                        <option value="senior">Senior Level</option>
+                    </select>
+
+                    <select id="salary-range">
+                        <option value="">Salary Range</option>
+                        <option value="0-40000">$0 - $40,000</option>
+                        <option value="40000-60000">$40,000 - $60,000</option>
+                        <option value="60000-80000">$60,000 - $80,000</option>
+                        <option value="80000+">$80,000+</option>
+                    </select>
+                </div>
+
+                <div class="filter-row">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remote-work">
+                        Remote Work
+                    </label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="recent-graduates">
+                        Recent Graduates
+                    </label>
+                    <button class="search-btn" id="search-btn">Search Jobs</button>
+                </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="sort-options">
+                <select id="sort-by">
+                    <option value="relevance">Sort by: Relevance</option>
+                    <option value="date">Sort by: Date Posted</option>
+                    <option value="salary">Sort by: Salary</option>
+                </select>
+            </div>
+
+            <!-- Jobs List -->
+            <div id="jobs-list">
+                <!-- Jobs will be populated here via JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination">
+                <!-- Pagination will be handled by JavaScript -->
+            </div>
+
+        </main>
+    </div>
+
+    <script src="jobs.js"></script>
+</body>
+</html>
