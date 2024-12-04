@@ -68,7 +68,75 @@ async function fetchUSAJobs(keyword, category) {
     return data.SearchResult.SearchResultItems;
 }
 
-Added commas to salaries and removed decimals
+//Removes decimals and adds commas
+function formatSalaryWithCommas(salary) {
+  let salaryNumber = parseFloat(salary);
+
+  if (isNaN(salaryNumber)) return "$0";
+
+  let integerPart = Math.floor(salaryNumber);
+
+  // Add commas to the integer part
+  let integerWithCommas = "";
+  let count = 0;
+  for (let i = integerPart.toString().length - 1; i >= 0; i--) {
+    integerWithCommas = integerPart.toString()[i] + integerWithCommas;
+    count++;
+    if (count % 3 === 0 && i !== 0) {
+      integerWithCommas = "," + integerWithCommas;
+    }
+  }
+
+  return "$" + integerWithCommas;
+}
+
+function displayJobs(jobs) {
+  if (!jobs.length) {
+    jobsList.innerHTML =
+      '<p class="no-results">No jobs found. Try different search terms.</p>';
+    return;
+  }
+
+  jobsList.innerHTML = jobs
+    .map((job) => {
+      const minSalary =
+        job.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange;
+      const maxSalary =
+        job.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange;
+      const salaryInterval =
+        job.MatchedObjectDescriptor.PositionRemuneration[0].RateIntervalCode;
+
+      return `
+            <div class="job-card">
+                <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
+                <p class="department">${
+                  job.MatchedObjectDescriptor.DepartmentName
+                }</p>
+                <p class="location">${
+                  job.MatchedObjectDescriptor.PositionLocationDisplay
+                }</p>
+                <div class="salary">
+                    ${formatSalaryWithCommas(
+                      minSalary
+                    )} - ${formatSalaryWithCommas(maxSalary)} ${salaryInterval}
+                </div>
+                <div class="job-actions">
+                    <button onclick="saveJob('${
+                      job.MatchedObjectId
+                    }')" class="save-btn">
+                        Save Job
+                    </button>
+                    <a href="${job.MatchedObjectDescriptor.ApplyURI}" 
+                       target="_blank" 
+                       class="apply-btn">
+                        Apply Now
+                    </a>
+                </div>
+            </div>
+        `;
+    })
+    .join("");
+}
 
 // Save job to localStorage
 async function saveJob(jobId) {
