@@ -68,36 +68,7 @@ async function fetchUSAJobs(keyword, category) {
     return data.SearchResult.SearchResultItems;
 }
 
-// Display jobs in the jobs list
-function displayJobs(jobs) {
-    if (!jobs.length) {
-        jobsList.innerHTML = '<p class="no-results">No jobs found. Try different search terms.</p>';
-        return;
-    }
-
-    jobsList.innerHTML = jobs.map(job => `
-        <div class="job-card">
-            <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
-            <p class="department">${job.MatchedObjectDescriptor.DepartmentName}</p>
-            <p class="location">${job.MatchedObjectDescriptor.PositionLocationDisplay}</p>
-            <div class="salary">
-                $${job.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange} - 
-                $${job.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange} 
-                ${job.MatchedObjectDescriptor.PositionRemuneration[0].RateIntervalCode}
-            </div>
-            <div class="job-actions">
-                <button onclick="saveJob('${job.MatchedObjectId}')" class="save-btn">
-                    Save Job
-                </button>
-                <a href="${job.MatchedObjectDescriptor.ApplyURI}" 
-                   target="_blank" 
-                   class="apply-btn">
-                    Apply Now
-                </a>
-            </div>
-        </div>
-    `).join('');
-}
+Added commas to salaries and removed decimals
 
 // Save job to localStorage
 async function saveJob(jobId) {
