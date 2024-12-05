@@ -12,7 +12,7 @@ GradJobs is a web application designed to help recent graduates find federal job
 
 ## Technical Requirements Met
 
-### Frontend (110 points) ✅
+### Frontend ✅
 1. **FetchAPI Data Integration**
    - USAJOBS API integration
    - Custom backend API calls
@@ -37,7 +37,7 @@ GradJobs is a web application designed to help recent graduates find federal job
    - Responsive design
    - Cross-browser compatibility
 
-### Backend (60 points) ✅
+### Backend ✅
 1. **Database Integration**
    - Supabase implementation for data persistence
    - User job bookmarks storage
