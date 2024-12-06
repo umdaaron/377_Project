@@ -139,70 +139,72 @@ function displayJobs(jobs) {
 }
 
 // Save job to localStorage
+// Update the saveJob function
+// Save job to localStorage
 async function saveJob(jobId) {
     try {
-        const savedJobs = JSON.parse(localStorage.getItem('savedJobs') || '[]');
-        if (!savedJobs.includes(jobId)) {
-            // Save to localStorage
-            savedJobs.push(jobId);
-            localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
-            
-            // Save to Supabase
-            const { data, error } = await supabaseClient
-                .from('saved_jobs')
-                .insert([
-                    { 
-                        job_id: jobId,
-                        user_id: 'guest', // Replace with actual user ID when auth is implemented
-                        saved_date: new Date().toISOString()
-                    }
-                ]);
-                
-            if (error) throw error;
-            showNotification('Job saved successfully!');
-        } else {
-            showNotification('Job already saved!');
+        // First fetch the full job details before saving
+        const jobDetails = await fetchUSAJobs(jobId, '');
+        const job = jobDetails[0]; // Assuming the first result is our job
+
+        if (!job) {
+            throw new Error('Job details not found');
         }
+
+        // Get existing saved jobs from localStorage
+        const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+
+        // Check if the job is already saved
+        const jobExists = savedJobs.some(savedJob => savedJob.job_id === jobId);
+        if (jobExists) {
+            showNotification('Job is already saved!');
+            return;
+        }
+
+        // Save job details to localStorage
+        savedJobs.push({
+            job_id: jobId,
+            job_title: job.MatchedObjectDescriptor.PositionTitle,
+            department: job.MatchedObjectDescriptor.DepartmentName,
+            location: job.MatchedObjectDescriptor.PositionLocationDisplay,
+            apply_uri: job.MatchedObjectDescriptor.ApplyURI
+        });
+
+        localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+        showNotification('Job saved successfully!');
     } catch (error) {
         console.error('Error saving job:', error);
         showNotification('Failed to save job. Please try again.');
     }
 }
 
-// Update savedJobsBtn click handler
-savedJobsBtn.addEventListener('click', async () => {
-    try {
-        showLoadingState();
-        
-        // Fetch saved jobs from Supabase
-        const { data: savedJobsData, error } = await supabaseClient
-            .from('saved_jobs')
-            .select('job_id')
-            .eq('user_id', 'guest');
+// Update the savedJobsBtn click handler
+savedJobsBtn.addEventListener('click', () => {
+    const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
 
-        if (error) throw error;
-
-        if (!savedJobsData || savedJobsData.length === 0) {
-            jobsList.innerHTML = '<p class="no-results">No saved jobs found.</p>';
-            return;
-        }
-
-        // Fetch job details for each saved job
-        const jobPromises = savedJobsData.map(saved => 
-            fetchUSAJobs(saved.job_id, '')
-        );
-
-        const jobs = await Promise.all(jobPromises);
-        displayJobs(jobs.flat());
-
-    } catch (error) {
-        console.error('Error fetching saved jobs:', error);
-        showError('Failed to load saved jobs. Please try again later.');
-    } finally {
-        hideLoadingState();
+    if (savedJobs.length === 0) {
+        jobsList.innerHTML = '<p class="no-results">No saved jobs found.</p>';
+        return;
     }
-});
 
+    // Display saved jobs
+    jobsList.innerHTML = savedJobs
+        .map(job => `
+            <div class="job-card">
+                <h3>${job.job_title}</h3>
+                <p class="department">${job.department}</p>
+                <p class="location">${job.location}</p>
+                <div class="job-actions">
+                    <a href="${job.apply_uri}" 
+                       target="_blank" 
+                       class="apply-btn">
+                        Apply Now
+                    </a>
+                </div>
+            </div>
+        `)
+        .join('');
+});
 
 // UI Helper Functions
 function showLoadingState() {
