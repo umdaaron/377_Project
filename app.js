@@ -179,6 +179,7 @@ async function saveJob(jobId) {
 }
 
 // Update the savedJobsBtn click handler
+// Update the savedJobsBtn click handler
 savedJobsBtn.addEventListener('click', () => {
     const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
 
@@ -187,8 +188,9 @@ savedJobsBtn.addEventListener('click', () => {
         return;
     }
 
-    // Display saved jobs
+    // Display saved jobs, filtering out any undefined or incomplete jobs
     jobsList.innerHTML = savedJobs
+        .filter(job => job && job.job_title && job.department && job.location && job.apply_uri) // Filter out undefined jobs
         .map(job => `
             <div class="job-card">
                 <h3>${job.job_title}</h3>
@@ -204,6 +206,11 @@ savedJobsBtn.addEventListener('click', () => {
             </div>
         `)
         .join('');
+
+    // If all jobs were filtered out, show a no results message
+    if (jobsList.innerHTML === '') {
+        jobsList.innerHTML = '<p class="no-results">No valid saved jobs found.</p>';
+    }
 });
 
 // UI Helper Functions
