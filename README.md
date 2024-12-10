@@ -71,8 +71,7 @@ GradJobs is a web application designed to help recent graduates find federal job
    
    - Use the Job Search section on jobs.html to search for specific job positions and test the filtering functionality.
    - Use browser developer tools to inspect and debug.
-   - Test API calls in the console or using tools like Postman.
-No automated testing scripts are included in this project.
+   - No automated testing scripts are included in this project.
 
 
 ## Technologies Used
