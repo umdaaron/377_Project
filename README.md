@@ -3,8 +3,11 @@
 ## Project Overview
 GradJobs is a web application designed to help recent graduates find federal job opportunities. The platform integrates with USAJOBS API and provides interactive visualizations of job statistics using Chart.js.
 
-#### **Target browsers:** Desktop Browsers via Search Engines
-
+## Target Browsers:
+- Chrome (v90+)
+- Firefox (v80+)
+- Edge (v89+)
+- Safari (v14+)
 
 ## Features
 - Real-time job search with multiple filters
@@ -61,6 +64,16 @@ GradJobs is a web application designed to help recent graduates find federal job
 ├── jobs.js            # Job search functionality
 └── server.js          # Backend API endpoints
 ```
+## How to Run Tests
+
+**Manual Testing:**
+   - Open index.html and navigate to various pages (e.g., jobs.html, about.html) to verify functionality.
+   
+   - Use the Job Search section on jobs.html to search for specific job positions and test the filtering functionality.
+   - Use browser developer tools to inspect and debug.
+   - Test API calls in the console or using tools like Postman.
+No automated testing scripts are included in this project.
+
 
 ## Technologies Used
 - Frontend: HTML5, CSS3, JavaScript
@@ -70,7 +83,7 @@ GradJobs is a web application designed to help recent graduates find federal job
 
 ## Setup Instructions
 1. Clone the repository
-2. Set up environment variables in your JavaScript:
+2. Use the provided environment variables within your system:
 ```javascript
 const SUPABASE_URL = 'your_supabase_url';
 const SUPABASE_KEY = 'your_supabase_key';
@@ -81,6 +94,16 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 ## API Documentation
 - `GET /api/job-stats`: Returns job statistics
 - `POST /api/applications`: Saves job applications
+
+## Known Bugs
+- Chart visualization does not load up some of the summary statistics for the different types of aggregates we would want to capture.
+
+## Future Development:
+- Improve search filter functionality.
+- Implement user authentication to restrict access to certain features, such as job bookmarking. Only registered and authenticated users will have the ability to bookmark jobs, ensuring these features are exclusive to signed-up users.
+
+## Target Audience:
+This documentation is intended for developers with general knowledge of web applications but no prior experience with this system. Ensure Supabase and API keys are configured correctly before development.
 
 ## Contributors
 - Aaron Tekle, Amina Shabbir, Richard Lac, Hassan Wasim, and Kedrala Mohammed
