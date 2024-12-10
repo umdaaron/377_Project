@@ -100,6 +100,10 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 ## Future Development:
 - Improve search filter functionality.
 - Implement user authentication to restrict access to certain features, such as job bookmarking. Only registered and authenticated users will have the ability to bookmark jobs, ensuring these features are exclusive to signed-up users.
+- Voice commands and screen reader support for visually impaired users.
+- Keyboard navigability for all interactive elements.
+- Offline support for viewing previously saved jobs and applications.
+- Trends analysis (e.g., most sought-after job types, locations, or agencies)
 
 ## Target Audience:
 This documentation is intended for developers with general knowledge of web applications but no prior experience with this system. Ensure Supabase and API keys are configured correctly before development.
