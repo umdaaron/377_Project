@@ -8,11 +8,7 @@ const API_CONFIG = {
 // DOM Elements
 const keywordSearch = document.getElementById('keyword-search');
 const locationSearch = document.getElementById('location-search');
-const categorySelect = document.getElementById('job-category');
-const experienceLevel = document.getElementById('experience-level');
-const salaryRange = document.getElementById('salary-range');
 const remoteWork = document.getElementById('remote-work');
-const recentGraduates = document.getElementById('recent-graduates');
 const searchBtn = document.getElementById('search-btn');
 const jobsList = document.getElementById('jobs-list');
 const sortBy = document.getElementById('sort-by');
@@ -39,6 +35,20 @@ async function performJobSearch() {
         if (!Array.isArray(jobs)) {
             console.error('Invalid jobs data received:', jobs);
             return;
+        }
+        if (sortBy.value === 'date') {
+            jobs.sort((a, b) => {
+                const dateA = new Date(a.MatchedObjectDescriptor.DatePosted);
+                const dateB = new Date(b.MatchedObjectDescriptor.DatePosted);
+                return dateB - dateA; // Sort descending (newest first)
+            });
+        }
+        else if (sortBy.value === 'salary'){
+            jobs.sort((a,b) => {
+                const salaryA = a.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange;
+                const salaryB = b.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange;
+                return salaryB - salaryA; 
+            });
         }
 
         // Calculate stats
@@ -150,8 +160,7 @@ async function fetchUSAJobs(searchParams) {
         Keyword: searchParams.Keyword,
         LocationName: searchParams.LocationName,
         ResultsPerPage: '10',
-        Fields: 'min',
-        ...(searchParams.JobCategory && { JobCategoryCode: searchParams.JobCategory })
+        Fields: 'min'
     });
 
     const response = await fetch(`https://data.usajobs.gov/api/search?${params}`, {
@@ -175,11 +184,7 @@ function getSearchParams() {
     return {
         Keyword: keywordSearch.value.trim(),
         LocationName: locationSearch.value.trim(),
-        JobCategory: categorySelect.value,
-        PayGradeLow: getSalaryRangeLow(salaryRange.value),
-        PayGradeHigh: getSalaryRangeHigh(salaryRange.value),
-        RemoteIndicator: remoteWork.checked ? 'Yes' : null,
-        RecentGraduates: recentGraduates.checked ? 'Yes' : null,
+
         Page: currentPage,
         ResultsPerPage: resultsPerPage,
         SortBy: sortBy.value
@@ -194,10 +199,12 @@ function displayJobs(jobs) {
     }
 
     jobsList.innerHTML = jobs.map(job => `
+        
         <div class="job-card">
             <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
             <p>${job.MatchedObjectDescriptor.DepartmentName}</p>
             <p>${job.MatchedObjectDescriptor.PositionLocationDisplay}</p>
+            <p>$${Math.floor(job.MatchedObjectDescriptor.PositionRemuneration[0].MinimumRange).toLocaleString()} - $${Math.floor(job.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange).toLocaleString()}</p>
             <a href="${job.MatchedObjectDescriptor.ApplyURI}" target="_blank">Apply Now</a>
         </div>
     `).join('');
