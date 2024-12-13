@@ -10,7 +10,7 @@ GradJobs is a web application designed to help recent graduates find federal job
 - Safari (v14+)
 
 ## Link to Developer Manual
-- [Developer Manual](docs/other_file.md)
+- [Developer Manual](docs)
 
 
 ## Features
