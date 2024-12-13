@@ -1,6 +1,6 @@
 # GradJobs - Federal Job Search Platform
 
-## Project Overview
+## Project Description
 GradJobs is a web application designed to help recent graduates find federal job opportunities. The platform integrates with USAJOBS API and provides interactive visualizations of job statistics using Chart.js.
 
 ## Target Browsers:
@@ -8,6 +8,9 @@ GradJobs is a web application designed to help recent graduates find federal job
 - Firefox (v80+)
 - Edge (v89+)
 - Safari (v14+)
+
+## Link to Developer Manual
+- /docs
 
 ## Features
 - Real-time job search with multiple filters
