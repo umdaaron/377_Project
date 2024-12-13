@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+h1 {
+    color: green;
+}
+
 /* Add these navigation styles */
 nav {
     background-color: #333;
