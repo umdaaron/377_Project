@@ -1,4 +1,5 @@
 # GradJobs - Federal Job Search Platform
+# Group Members: Aaron Tekle, Amina Shabbir, Hassan Wasim, Richard Lac, and Kedrala Mohammed
 
 ## Project Description
 GradJobs is a web application designed to help recent graduates find federal job opportunities. The platform integrates with USAJOBS API and provides interactive visualizations of job statistics using Chart.js.
