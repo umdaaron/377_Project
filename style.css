@@ -10,6 +10,10 @@ nav {
     padding: 1rem 0;
 }
 
+h1, h2 {
+    color: green;
+}
+
 nav ul {
     list-style: none;
     display: flex;
