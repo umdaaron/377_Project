@@ -10,10 +10,6 @@ nav {
     padding: 1rem 0;
 }
 
-h1, h2 {
-    color: green;
-}
-
 nav ul {
     list-style: none;
     display: flex;
@@ -308,7 +304,7 @@ header {
 .custom-btn {
     margin: 10px auto; /* Centers buttons and adds spacing */
     padding: 10px 20px;
-    background-color:green;
+    background-color: blue;
     color: white;
     border: none;
     border-radius: 5px;
