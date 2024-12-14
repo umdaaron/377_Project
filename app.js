@@ -123,7 +123,8 @@ function displayJobs(jobs) {
                 <div class="job-actions">
                     <button onclick="saveJob('${
                       job.MatchedObjectId
-                    }')" class="save-btn">
+                    }')" class="save-btn"
+                    style="color: green; font-weight: bold;">
                         Save Job
                     </button>
                     <a href="${job.MatchedObjectDescriptor.ApplyURI}" 
