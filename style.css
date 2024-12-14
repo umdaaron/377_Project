@@ -304,8 +304,8 @@ header {
 .custom-btn {
     margin: 10px auto; /* Centers buttons and adds spacing */
     padding: 10px 20px;
-    background-color: blue;
-    color: white;
+    background-color: red;
+    color: yellow;
     border: none;
     border-radius: 5px;
     cursor: pointer;
