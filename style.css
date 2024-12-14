@@ -344,3 +344,10 @@ header {
   .search-btn:active {
     box-shadow: 0 0.3em 1em -0.5em #14a73e98;
   }
+
+  /* Text Boxes on Jobs Page */
+
+  #keyword-search, #location-search {
+      height: 40px;
+      width: 180px;
+  }
