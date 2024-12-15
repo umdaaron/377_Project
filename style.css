@@ -351,3 +351,20 @@ header {
       height: 40px;
       width: 180px;
   }
+
+  /* Add this to your style.css */
+.featured-jobs-carousel {
+    margin: 20px 0;
+}
+
+.carousel {
+    display: flex;
+}
+
+.job-item {
+    background: #f0f0f0;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
