@@ -340,7 +340,9 @@ function initializeFeaturedJobs(jobs) {
     jobs.forEach(job => {
         carousel.append(`
             <div class="featured-job">
-                <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
+                <a href="${job.MatchedObjectDescriptor.ApplyURI}" target="_blank" class="job-link">
+                    <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
+                </a>
                 <p>${job.MatchedObjectDescriptor.DepartmentName}</p>
                 <p>${job.MatchedObjectDescriptor.PositionLocationDisplay}</p>
             </div>
@@ -398,3 +400,70 @@ async function performJobSearch() {
         hideLoadingState();
     }
 }
+
+// ... existing code ...
+// ... existing code ...
+$(document).ready(function(){
+    // Initialize the carousel
+    $('.carousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+    });
+
+    // Fetch featured jobs from the API
+// Update the existing fetchFeaturedJobs function in app.js
+// Update the existing fetchFeaturedJobs function in app.js
+async function fetchFeaturedJobs() {
+    try {
+        const response = await fetch('/api/featured-jobs'); // Adjust the endpoint as needed
+        const jobs = await response.json();
+
+        // Populate the carousel with job items
+        const carousel = $('#featured-jobs-carousel');
+        jobs.forEach(job => {
+            const jobItem = `
+    <div class="job-item">
+        <a href="${job.ApplyURI}" target="_blank" class="job-link">
+            ${job.PositionTitle}
+        </a>
+    </div>
+`;
+            carousel.append(jobItem);
+        });
+
+        // Initialize the carousel after adding items
+        carousel.slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    } catch (error) {
+        console.error('Error fetching featured jobs:', error);
+    }
+}
+
+    fetchFeaturedJobs(); // Call the function to fetch jobs
+});
+// ... existing code ...
+// ... existing code ...
