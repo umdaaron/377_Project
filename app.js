@@ -144,9 +144,9 @@ function displayJobs(jobs) {
 // Save job to localStorage
 async function saveJob(jobId) {
     try {
-        // First fetch the full job details before saving
+        // Fetch the full job details before saving
         const jobDetails = await fetchUSAJobs(jobId, '');
-        const job = jobDetails[0]; // Assuming the first result is our job
+        const job = jobDetails[0]; // Assuming the first result is the correct job
 
         if (!job) {
             throw new Error('Job details not found');
@@ -158,7 +158,7 @@ async function saveJob(jobId) {
         // Check if the job is already saved
         const jobExists = savedJobs.some(savedJob => savedJob.job_id === jobId);
         if (jobExists) {
-            showNotification('Job is already saved!');
+            alert('Job is already saved!');
             return;
         }
 
@@ -172,10 +172,12 @@ async function saveJob(jobId) {
         });
 
         localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
-        showNotification('Job saved successfully!');
+
+        // Show success alert
+        alert('Job saved successfully!');
     } catch (error) {
         console.error('Error saving job:', error);
-        showNotification('Failed to save job. Please try again.');
+        alert('Failed to save job. Please try again.');
     }
 }
 
@@ -345,6 +347,12 @@ function initializeFeaturedJobs(jobs) {
                 </a>
                 <p>${job.MatchedObjectDescriptor.DepartmentName}</p>
                 <p>${job.MatchedObjectDescriptor.PositionLocationDisplay}</p>
+                <div class="job-actions">
+                    <button onclick="saveJob('${job.MatchedObjectId}')" class="save-btn"
+                        style="color: green; font-weight: bold;">
+                        Save Job
+                    </button>
+                </div>
             </div>
         `);
     });
