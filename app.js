@@ -364,6 +364,8 @@ function initializeFeaturedJobs(jobs) {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
+        autoplay: true,       // Enable autoplay
+        autoplaySpeed: 2000,  // Time between slides (2 seconds)
         responsive: [
             {
                 breakpoint: 1024,
