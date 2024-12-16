@@ -180,3 +180,36 @@ header {
     border-radius: 5px;
     text-align: center;
 }
+
+/* Arrows */
+.slick-prev::before,
+.slick-next::before {
+    content: none !important; /* Prevent any default text or content */
+    display: none !important; /* Ensure nothing is rendered */
+}
+
+/* Custom left arrow */
+.slick-prev {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>') no-repeat center center !important;
+    background-size: contain !important;
+    left: -50px !important; /* Adjust position */
+    font-size: 0; /* Remove any inherited text */
+}
+
+/* Custom right arrow */
+.slick-next {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>') no-repeat center center !important;
+    background-size: contain !important;
+    right: -50px !important; /* Adjust position */
+    font-size: 0; /* Remove any inherited text */
+}
+
+/* Ensure nothing else overrides these changes */
+.slick-prev, .slick-next {
+    color: transparent !important; /* Remove any text color */
+    text-indent: -9999px; /* Ensure no text is visible */
+    overflow: hidden;
+    width: 40px !important; /* Arrow size */
+    height: 40px !important;
+    cursor: pointer;
+}
