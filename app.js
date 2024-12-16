@@ -30,7 +30,7 @@ searchInput.addEventListener('keypress', (e) => {
 async function performJobSearch() {
     const searchTerm = searchInput.value.trim();
     const category = categorySelect.value;
-    
+   
     try {
         showLoadingState();
         const jobs = await fetchUSAJobs(searchTerm, category);
@@ -127,8 +127,8 @@ function displayJobs(jobs) {
                     style="color: green; font-weight: bold;">
                         Save Job
                     </button>
-                    <a href="${job.MatchedObjectDescriptor.ApplyURI}" 
-                       target="_blank" 
+                    <a href="${job.MatchedObjectDescriptor.ApplyURI}"
+                       target="_blank"
                        class="apply-btn">
                         Apply Now
                     </a>
@@ -200,8 +200,8 @@ savedJobsBtn.addEventListener('click', () => {
                 <p class="department">${job.department}</p>
                 <p class="location">${job.location}</p>
                 <div class="job-actions">
-                    <a href="${job.apply_uri}" 
-                       target="_blank" 
+                    <a href="${job.apply_uri}"
+                       target="_blank"
                        class="apply-btn">
                         Apply Now
                     </a>
@@ -235,7 +235,7 @@ function showNotification(message) {
     notification.className = 'notification';
     notification.textContent = message;
     document.body.appendChild(notification);
-    
+   
     setTimeout(() => {
         notification.remove();
     }, 3000);
@@ -248,7 +248,7 @@ async function fetchJobStats() {
     try {
         const response = await fetch('http://localhost:3000/api/job-stats');
         const stats = await response.json();
-        
+       
         // Update UI with statistics
         document.getElementById('total-saved').textContent = stats.totalSaved;
         document.getElementById('recent-saved').textContent = stats.recentlySaved;
@@ -338,7 +338,7 @@ function initializeJobStats(data) {
 function initializeFeaturedJobs(jobs) {
     const carousel = $('.featured-jobs-carousel');
     carousel.empty();
-    
+   
     jobs.forEach(job => {
         carousel.append(`
             <div class="featured-job">
