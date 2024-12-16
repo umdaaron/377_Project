@@ -148,11 +148,11 @@ header {
     -webkit-user-select: none;
     touch-action: manipulation;
   }
-  
+ 
   .search-btn:hover {
     box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
   }
-  
+ 
   .search-btn:active {
     box-shadow: 0 0.3em 1em -0.5em #14a73e98;
   }
