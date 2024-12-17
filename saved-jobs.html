@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Jobs - GradJobs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="jobs.html">Job Search</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
+            <li><a href="help.html">Help</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <body>
+
+        <br>
+        <h1 id="saved-jobs-title">Saved Jobs</h1>
+
+
+        <div id="saved-jobs-list"></div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const savedJobsContainer = document.getElementById('saved-jobs-list');
+    const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+
+    if (savedJobs.length === 0) {
+        savedJobsContainer.innerHTML = '<p>No saved jobs found.</p>';
+        return;
+    }
+
+    savedJobsContainer.innerHTML = savedJobs.map(job => `
+        <div class="job-card" data-job-id="${job.job_id}">
+            <h3>${job.job_title}</h3>
+            <p class="department">${job.department}</p>
+            <p class="location">${job.location}</p>
+            <div class="job-actions">
+                <a href="${job.apply_uri}" target="_blank" class="apply-btn">Apply Now</a>
+                <button class="remove-btn" onclick="removeJob('${job.job_id}')">Remove</button>
+            </div>
+        </div>
+    `).join('');
+});
+        </script>
+   
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('nav a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+
+                document.body.classList.add('fade-out'); // Fade-out effect
+                setTimeout(() => {
+                    window.location.href = href; // Navigate after transition
+                }, 700); 
+            });
+        });
+
+        document.body.classList.remove('fade-out'); // Fade-in on page load
+    });
+</script>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
