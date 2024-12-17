@@ -13,17 +13,16 @@
     <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
 </head>
 <body>
-    <!-- Navigation Bar -->
+                <!-- Navigation Bar -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="jobs.html">Job Search</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
             <li><a href="help.html">Help</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
@@ -50,9 +49,7 @@
                     <!-- Jobs will be populated here via JavaScript -->
                 </div>
             </div>
-                        
-                        <!-- Featured Jobs Carousel -->
-                        <!-- Featured Jobs Carousel -->
+                       
             <!-- Featured Jobs Carousel -->
             <div class="featured-jobs-carousel">
                 <h2>Featured Federal Positions</h2>
@@ -60,15 +57,35 @@
                     <!-- Job items will be populated here via JavaScript -->
                 </div>
             </div>
+
             <!-- Quick Links -->
             <div class="quick-links">
-                <h2>Quick Access</h2>
-                <button class="custom-btn" id="saved-jobs">Saved Jobs</button>
-                <button class="custom-btn" id="profile">My Profile</button>
+                <button class="custom-btn" id="saved-jobs"></button>
+                <button class="custom-btn" id="profile"></button>
             </div>
         </main>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+    
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+    
+                    document.body.classList.add('fade-out'); // Fade-out effect
+                    setTimeout(() => {
+                        window.location.href = href; // Navigate after transition
+                    }, 700); // Match CSS duration
+                });
+            });
+            document.body.classList.remove('fade-out'); // Fade-in on page load
+        });
+    </script>
+
     <script src="app.js"></script>
+    
 </body>
 </html>
