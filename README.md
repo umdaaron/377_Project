@@ -15,7 +15,7 @@ GradJobs is a web application designed to help recent graduates find federal job
 
 
 ## Features
-- Real-time job search with multiple filters
+- Real-time job search
 - Interactive job statistics visualization
 - Job bookmarking system
 - Featured jobs
@@ -75,6 +75,8 @@ GradJobs is a web application designed to help recent graduates find federal job
 │-- docs/                 # Documentation
 └-- README.md             # Project Overview & Developer Manual
 └-- REQS.md             # Project Requirements Implementation
+└-- PROOF_REQS..md      # Proof that our Project Requirements were met according to the rubruc
+
 ```
 ## How to Run Tests
 
