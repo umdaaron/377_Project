@@ -54,20 +54,6 @@ header {
     gap: 2rem;
 }
 
-.custom-btn {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-
-.custom-btn:hover {
-    transform: scale(1.05);
-}
-
 .stats-container {
     margin: 20px;
     padding: 20px;
@@ -103,7 +89,7 @@ header {
 .stats-container h2 {
     margin-bottom: 20px;
     text-align: center;
-    color: #000000; /* Make sure heading is visible */
+    color: #000000; 
 }
 
 #jobStatsChart {
@@ -115,16 +101,6 @@ header {
 
 .quick-links {
     text-align: center; /* Ensures the text inside is centered */
-}
-
-.custom-btn {
-    margin: 10px auto; /* Centers buttons and adds spacing */
-    padding: 10px 20px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 /* Top Search Button */
@@ -164,7 +140,6 @@ header {
       width: 180px;
   }
 
-  /* Add this to your style.css */
 .featured-jobs-carousel {
     margin: 20px 0;
 }
@@ -184,32 +159,132 @@ header {
 /* Arrows */
 .slick-prev::before,
 .slick-next::before {
-    content: none !important; /* Prevent any default text or content */
-    display: none !important; /* Ensure nothing is rendered */
+    content: none !important; 
+    display: none !important; 
 }
 
 /* Custom left arrow */
 .slick-prev {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>') no-repeat center center !important;
     background-size: contain !important;
-    left: -50px !important; /* Adjust position */
-    font-size: 0; /* Remove any inherited text */
+    left: -50px !important; 
+    font-size: 0; 
 }
 
 /* Custom right arrow */
 .slick-next {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>') no-repeat center center !important;
     background-size: contain !important;
-    right: -50px !important; /* Adjust position */
-    font-size: 0; /* Remove any inherited text */
+    right: -50px !important; 
+    font-size: 0;
 }
 
-/* Ensure nothing else overrides these changes */
 .slick-prev, .slick-next {
-    color: transparent !important; /* Remove any text color */
-    text-indent: -9999px; /* Ensure no text is visible */
+    color: transparent !important; 
+    text-indent: -9999px; 
     overflow: hidden;
     width: 40px !important; /* Arrow size */
     height: 40px !important;
     cursor: pointer;
 }
+
+/* Transitions */
+
+body {
+    opacity: 1;
+    transition: opacity 0.7s ease-in-out;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+/* Remove Button on Saved-Jobs Page */
+
+/* Advanced Remove Button Styling */
+.remove-btn {
+    background-color: #ff4b5c; 
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden; /* To contain the ripple effect */
+}
+
+/* Hover Effect: Scale and Shadow */
+.remove-btn:hover {
+    background-color: #ff1f3d; 
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0 4px 10px rgba(255, 75, 92, 0.5);
+}
+
+/* Click Effect: Ripple Animation */
+.remove-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.4);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.remove-btn:active::after {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.remove-btn:active {
+    transform: scale(0.95); /* Slight scale down on click */
+}
+
+/* Saved Jobs H1 - Advanced Animations */
+#saved-jobs-title {
+    text-align: center; /* Keep text centered */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #4CAF50; 
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.8), 0 0 20px rgba(76, 175, 80, 0.6);
+    animation: greenCycle 5s infinite linear, glowEffect 1.5s infinite alternate; 
+    transition: transform 0.3s ease-in-out; /* Smooth transition for bounce */
+    margin: 20px 0; 
+    cursor: default;
+}
+
+/* Bounce Effect on Hover */
+#saved-jobs-title:hover {
+    transform: translateY(-10px); /* Slight bounce */
+}
+
+@keyframes greenCycle {
+    0% { color: #4CAF50; }   
+    25% { color: blue; }  
+    50% { color: red; }   
+    75% { color: blueviolet; }  
+    100% { color: #4CAF50; }  /* Back to light green */
+}
+
+/* Glow Animation */
+@keyframes glowEffect {
+    0% {
+        text-shadow: 0 0 10px rgba(76, 175, 80, 0.8), 0 0 20px rgba(76, 175, 80, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(46, 125, 50, 0.8), 0 0 30px rgba(46, 125, 50, 0.6);
+    }
+}
+
