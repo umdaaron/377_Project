@@ -11,8 +11,9 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="jobs.html">Job Search</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
             <li><a href="help.html">Help</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
@@ -25,5 +26,26 @@
             <p style="text-align: center;">Check our FAQ section for common questions and answers.</p>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+    
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+    
+                    document.body.classList.add('fade-out'); // Fade-out effect
+                    setTimeout(() => {
+                        window.location.href = href; // Navigate after transition
+                    }, 700); // Match CSS duration
+                });
+            });
+    
+            document.body.classList.remove('fade-out'); // Fade-in on page load
+        });
+    </script>
+    
 </body>
 </html>
