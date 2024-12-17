@@ -11,8 +11,9 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="jobs.html">Job Search</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
             <li><a href="help.html">Help</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
@@ -23,7 +24,29 @@
         <main>
             <p style="text-align: center;">GradJobs is a platform designed to help graduates find job opportunities in their fields of interest, particularly within the federal sector.</p>
             <p style="text-align: center;">We utilize APIs like USAJOBS and Open Skills to connect users with relevant job postings.</p>
+            <br>
+            <p style="text-align: center;">Collaborators: Aaron Tekle, Amina Shabbir, Hassan Wasim, Richard Lac, and Kedrala Mohammed</p>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+    
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+    
+                    document.body.classList.add('fade-out'); // Fade-out effect
+                    setTimeout(() => {
+                        window.location.href = href; // Navigate after transition
+                    }, 700); // Match CSS duration
+                });
+            });
+    
+            document.body.classList.remove('fade-out'); // Fade-in on page load
+        });
+    </script>    
 </body>
 </html>
