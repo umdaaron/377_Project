@@ -4,6 +4,8 @@
 ## Project Description
 GradJobs is a web application designed to help recent graduates find federal job opportunities. The platform integrates with USAJOBS API and provides interactive visualizations of job statistics using Chart.js.
 
+### Note: Make Sure CORS extension is being used when using the webpage
+
 ## Target Browsers:
 - Chrome (v90+)
 - Firefox (v80+)
