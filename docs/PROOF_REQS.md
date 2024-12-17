@@ -64,7 +64,7 @@
 
 ### **3. Deployment Requirements (30 pts)**  
 - **Deployment Ready**:  
-   Project configured for deployment to Vercel (Node.js backend, static frontend).  
+   Project deployed onto vercel.  (https://377-final-project-nine.vercel.app/)
 
 ---
 
