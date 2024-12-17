@@ -15,8 +15,9 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="jobs.html">Job Search</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="saved-jobs.html">Saved Jobs</a></li>
             <li><a href="help.html">Help</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
@@ -24,9 +25,8 @@
         <header>
             <h1>Job Search</h1>
         </header>
-        
+       
         <main>
-            <!-- Add this right after the header -->
              <div class="stats-container">
                 <h2>Job Search Statistics</h2>
                 <canvas id="jobStatsChart"></canvas>
@@ -38,9 +38,9 @@
                     <input type="text" id="keyword-search" placeholder="Job title, keywords, or agency">
                     <input type="text" id="location-search" placeholder="City, state, or ZIP">
                 </div>
-                
+               
                 <br>
-                
+               
                 <div class="filter-row">
                     <button class="search-btn" id="search-btn">Search Jobs</button>
                 </div>
@@ -48,7 +48,7 @@
             </div>
 
             <br>
-            
+           
             <!-- Sort Options -->
             <div class="sort-options">
                 <select id="sort-by">
@@ -68,8 +68,30 @@
                 <!-- Pagination will be handled by JavaScript -->
             </div>
 
+            
+
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('nav a');
+    
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const href = link.getAttribute('href');
+    
+                    document.body.classList.add('fade-out'); // Fade-out effect
+                    setTimeout(() => {
+                        window.location.href = href; // Navigate after transition
+                    }, 700); // Match CSS duration
+                });
+            });
+    
+            document.body.classList.remove('fade-out'); // Fade-in on page load
+        });
+    </script>    
 
     <script src="jobs.js"></script>
 </body>
