@@ -280,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     performJobSearch();
     fetchJobStats(); // Fetch initial statistics
 });
+
 // Quick Access Button Handlers
 recentJobsBtn.addEventListener('click', () => {
     // Implementation for showing recent jobs
@@ -404,7 +405,7 @@ async function performJobSearch() {
         displayJobs(jobs);
         initializeFeaturedJobs(jobs.slice(0, 5)); // Show first 5 jobs in carousel
     } catch (error) {
-        showError('Failed to fetch jobs. Please try again later.');
+        showError('');
         console.error('Search error:', error);
     } finally {
         hideLoadingState();
@@ -477,3 +478,31 @@ async function fetchFeaturedJobs() {
 });
 // ... existing code ...
 // ... existing code ...
+function removeJob(jobId) {
+    // Get saved jobs from localStorage
+    const savedJobs = JSON.parse(localStorage.getItem('savedJobs')) || [];
+
+    // Filter out the job to remove
+    const updatedJobs = savedJobs.filter(job => job.job_id !== jobId);
+
+    // Update localStorage
+    localStorage.setItem('savedJobs', JSON.stringify(updatedJobs));
+
+    // Refresh the displayed saved jobs
+    const savedJobsContainer = document.getElementById('saved-jobs-list');
+    if (updatedJobs.length === 0) {
+        savedJobsContainer.innerHTML = '<p>No saved jobs found.</p>';
+    } else {
+        savedJobsContainer.innerHTML = updatedJobs.map(job => `
+            <div class="job-card" data-job-id="${job.job_id}">
+                <h3>${job.job_title}</h3>
+                <p class="department">${job.department}</p>
+                <p class="location">${job.location}</p>
+                <div class="job-actions">
+                    <a href="${job.apply_uri}" target="_blank" class="apply-btn">Apply Now</a>
+                    <button class="remove-btn" onclick="removeJob('${job.job_id}')">Remove</button>
+                </div>
+            </div>
+        `).join('');
+    }
+}
