@@ -31,7 +31,7 @@ async function performJobSearch() {
         showLoadingState();
         const searchParams = getSearchParams();
         const jobs = await fetchUSAJobs(searchParams);
-        
+       
         if (!Array.isArray(jobs)) {
             console.error('Invalid jobs data received:', jobs);
             return;
@@ -47,7 +47,7 @@ async function performJobSearch() {
             jobs.sort((a,b) => {
                 const salaryA = a.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange;
                 const salaryB = b.MatchedObjectDescriptor.PositionRemuneration[0].MaximumRange;
-                return salaryB - salaryA; 
+                return salaryB - salaryA;
             });
         }
 
@@ -62,19 +62,19 @@ async function performJobSearch() {
         // Process each job
         jobs.forEach(job => {
             const jobData = job.MatchedObjectDescriptor;
-            
+           
             // Remote work check
             if (jobData.PositionLocationDisplay?.toLowerCase().includes('remote') ||
                 jobData.UserArea?.Details?.TeleworkEligible?.toLowerCase() === 'yes') {
                 stats.remoteJobs++;
             }
-            
+           
             // Entry level check
             if (jobData.JobGrade?.[0]?.Code?.match(/GS-(05|07)/i) ||
                 jobData.QualificationSummary?.toLowerCase().includes('entry')) {
                 stats.entryLevel++;
             }
-            
+           
             // Recent graduate check
             if (jobData.QualificationSummary?.toLowerCase().includes('recent grad')) {
                 stats.recentGrad++;
@@ -85,9 +85,7 @@ async function performJobSearch() {
         createJobStatsChart(stats);
         displayJobs(jobs);
         updatePagination(jobs.length);
-    } catch (error) {
-        showError('Failed to fetch jobs. Please try again later.');
-        console.error('Search error:', error);
+   
     } finally {
         hideLoadingState();
     }
@@ -97,7 +95,7 @@ async function performJobSearch() {
 function createJobStatsChart(data) {
     console.log('Creating chart with data:', data);
     const ctx = document.getElementById('jobStatsChart');
-    
+   
     if (!ctx) {
         console.error('Could not find chart canvas element');
         return;
@@ -199,7 +197,7 @@ function displayJobs(jobs) {
     }
 
     jobsList.innerHTML = jobs.map(job => `
-        
+       
         <div class="job-card">
             <h3>${job.MatchedObjectDescriptor.PositionTitle}</h3>
             <p>${job.MatchedObjectDescriptor.DepartmentName}</p>
