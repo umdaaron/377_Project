@@ -41,6 +41,8 @@ GradJobs is a web application designed to help recent graduates find federal job
 4. **Required Pages**
    - Home Page (`index.html`): Featured jobs and quick search
    - Job Search Page (`jobs.html`): Advanced search with statistics
+   - Saved Jobs Page (`saved-jobs.html`): Webpage that allows you to view jobs oyu saved
+   - Help Page (`jobs.html`): PoC (Proof of Concept) Contact Information to Developer Team for Bugs
    - About Page (`about.html`): Platform information
 
 5. **CSS Implementation**
@@ -60,14 +62,19 @@ GradJobs is a web application designed to help recent graduates find federal job
 
 ## Project Structure
 ```
-├── index.html          # Home page
-├── jobs.html           # Job search page
-├── about.html          # About page
-├── help.html          # Help page
-├── style.css          # Global styles
-├── app.js             # Main application logic
-├── jobs.js            # Job search functionality
-└── server.js          # Backend API endpoints
+377_Project/
+│   ├── index.html        # Home page
+│   ├── jobs.html         # Job search page
+│   ├── saved-jobs.html   # Saved jobs page
+│   ├── help.html         # Help page
+│   └── about.html        # About page
+│   ├── app.js            # Frontend logic
+│   ├── jobs.js           # Job search logic
+│   ├── server.js         # Backend server
+│   └── style.css         # Stylesheet
+│-- docs/                 # Documentation
+└-- README.md             # Project Overview & Developer Manual
+└-- REQS.md             # Project Requirements Implementation
 ```
 ## How to Run Tests
 
@@ -81,7 +88,7 @@ GradJobs is a web application designed to help recent graduates find federal job
 
 ## Technologies Used
 - Frontend: HTML5, CSS3, JavaScript
-- Libraries: Chart.js, jQuery, Slick Carousel
+- Libraries: Chart.js, Slick Carousel
 - Database: Supabase
 - API: USAJOBS API
 
@@ -100,7 +107,7 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 - `POST /api/applications`: Saves job applications
 
 ## Known Bugs
-- Chart visualization does not load up some of the summary statistics for the different types of aggregates we would want to capture.
+- Chart visualization does not load up some of the summary statistics for the different types of aggregates, when it comes to job postings, which limits the number of visualizations.
 
 ## Future Development:
 - Improve search filter functionality.
