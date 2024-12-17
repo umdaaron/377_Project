@@ -110,6 +110,8 @@ const USAJOBS_API_KEY = 'your_usajobs_key';
 
 ## Known Bugs
 - Chart visualization does not load up some of the summary statistics for the different types of aggregates, when it comes to job postings, which limits the number of visualizations.
+- For some web browsers, an undefined posting with undefined information pops up within the saved jobs section. Some users do not see it, some do, the functionality of the page works, but an undesired posting does attach itself to the page.
+
 
 ## Future Development:
 - Improve search filter functionality.
